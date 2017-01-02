@@ -1,0 +1,5 @@
+---
+
+- name: Install Tomcat init script
+  copy: src=tomcat-initscript.sh dest=/tmp mode=0755
+
