@@ -1,5 +1,15 @@
 ---
+- name: add group "{{ groupname }}"
+  group: name={{ groupname }}
 
-- name: Install Tomcat init script
-  copy: src=tomcat-initscript.sh dest=/tmp mode=0755
+- name: add user "javapps"
+  user: name=javapps group={{ groupname }} home=/usr/share/javapps createhome=no
+  become: True
+  become_method: sudo
 
+- unarchive:
+    src: javapps.tar.gz
+    dest: /opt
+
+- name: Change ownership of javapps directory 
+  file: path=/opt/javapps owner=javapps group={{ groupname }} state=directory recurse=yes

@@ -1,2 +1,2 @@
 [tomcat-servers]
-ansione.example.com
+ansione.example.com groupname=xml
